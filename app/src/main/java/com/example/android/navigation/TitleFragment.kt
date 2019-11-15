@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.android.navigation.databinding.FragmentTitleBinding
 import java.util.zip.Inflater
 
@@ -22,9 +23,10 @@ class TitleFragment : Fragment() {
             val binding =  DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title,
                                                         container, false)
         // THis sets on event that whenever the play button is clicked, it goes fro the current view
-        // which is title framgent to the game fragment view.
+        // which is title fragment to the game fragment view.
         binding.playButton.setOnClickListener{ view : View ->
-               Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)       }
+                Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)       }
+                //view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
         return binding.root
     }
 }
