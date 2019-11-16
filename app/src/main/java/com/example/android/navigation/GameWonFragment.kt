@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -33,7 +34,15 @@ class GameWonFragment : Fragment() {
         val binding: FragmentGameWonBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_game_won, container, false)
         binding.nextMatchButton.setOnClickListener{view : View ->
-                    view.findNavController().navigate(R.id.action_gameOverFragment_to_gameFragment)}
+                    //view.findNavController().navigate(R.id.action_gameWonFragment_to_gameFragment)}
+            view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())}
+
+        // catching the arguments from the global passed bundle arguments.
+        var args =  GameWonFragmentArgs.fromBundle(arguments!!)
+
+        // Print numbers of question and number of correct answers
+        Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestion}",
+                        Toast.LENGTH_LONG).show()
         return binding.root
     }
 }

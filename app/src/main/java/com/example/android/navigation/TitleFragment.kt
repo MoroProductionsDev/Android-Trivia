@@ -23,9 +23,17 @@ class TitleFragment : Fragment() {
                                                         container, false)
         // THis sets on event that whenever the play button is clicked, it goes fro the current view
         // which is title fragment to the game fragment view.
+        // Anonymous function version
         binding.playButton.setOnClickListener{ view : View ->
-                Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)       }
+               // Navigation.findNavController(view).navigate(R.id.action_titleFragment_to_gameFragment)
                 //view.findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
+                view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToGameFragment())}
+
+        // Object version
+        /*
+        * binding.playButton.setOnClickListener(
+        *...)
+        */
 
         // This activate the menu resource
         setHasOptionsMenu(true)
