@@ -37,7 +37,7 @@ class GameWonFragment : Fragment() {
             view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToGameFragment())}
 
         // catching the arguments from the global passed bundle arguments.
-        var args =  GameWonFragmentArgs.fromBundle(arguments!!)
+        val args =  GameWonFragmentArgs.fromBundle(arguments!!)
 
         // Print numbers of question and number of correct answers
         Toast.makeText(context, "NumCorrect: ${args.numCorrect}, NumQuestions: ${args.numQuestion}",
@@ -53,6 +53,12 @@ class GameWonFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.winner_menu, menu)
+
+        // check if the activity resolves. If there is not app to handle it
+        // Protect against a case where there is no app able to handle the Intent
+        if (null == getShareIntent().resolveActivity(activity!!.packageManager)) {
+            menu?.findItem(R.id.share)?.setVisible(false)
+        }
     }
 
     // Gets the arguments and build the share intent for sharing the result when user wins the trivia
